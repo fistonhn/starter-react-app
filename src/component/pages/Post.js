@@ -1,13 +1,78 @@
-import React from 'react';
+import React, { useState } from 'react'
 import Grid from '@mui/material/Grid';
 import TextField from '@mui/material/TextField';
 import Button from '@mui/material/Button';
 import logo from '../../assets/logo.png';
+import Link from '@material-ui/core/Link';
 
-function Post() {
+const Post = () => {
+    const [qData, setQdata] = useState({ rqd: null, jn: null, jr: null, ja: null, jw: null, srf: null })
+    const [qIndex, setQindex] = useState(null)
+    const [massQuality, setMassQuality] = useState(null)
+
+    const handleChange = (event) => {
+        const { name, value } = event.target
+        setQdata({ ...qData, [name]: value })
+      }
+
+    const handleCalculate = (e) => {
+        e.preventDefault()
+
+        const qIndexResult = (qData.rqd/qData.jn) * (qData.jr/qData.ja) * (qData.jw/qData.srf)
+
+        setQindex(qIndexResult)
+
+        let massQualityResult;
+
+            if(0.001 <= parseFloat(qIndexResult) && parseFloat(qIndexResult) < 0.01){
+              massQualityResult = "Exceptionally poor"
+
+            } else if( 0.01 <= parseFloat(qIndexResult) && parseFloat(qIndexResult) < 0.1){
+              massQualityResult = "Extremely poor"
+
+            } else if(0.1 <= parseFloat(qIndexResult) && parseFloat(qIndexResult) < 1){
+              massQualityResult = "Very poor"
+
+            } else if(1 <= parseFloat(qIndexResult) && parseFloat(qIndexResult) < 4){
+              massQualityResult = "Poor"
+
+            } else if (4 <= parseFloat(qIndexResult) && parseFloat(qIndexResult) < 10){
+              massQualityResult = "Fair"
+
+            } else if( 10 <= parseFloat(qIndexResult) && parseFloat(qIndexResult) < 40){
+              massQualityResult = "Good"
+            }
+
+             else if(40<= parseFloat(qIndexResult) && parseFloat(qIndexResult) < 100){
+              massQualityResult = "Very good"
+            }
+
+            else if(100 <= parseFloat(qIndexResult) && parseFloat(qIndexResult) < 400){
+                massQualityResult = "Extremely good"
+            }
+            else if(400 <= parseFloat(qIndexResult) && parseFloat(qIndexResult) < 1000){
+              massQualityResult = "Exceptionally good"
+            }  
+            else if(parseFloat(qIndexResult) > 1000){
+              massQualityResult = "Q INDEX is more than 1000"
+            }
+             else {
+                massQualityResult = "No result"
+            }
+
+            setMassQuality(massQualityResult)
+
+
+    }
   return (
     <>
-        <img src={logo} style={{ padding: '1%'}}/>
+        <div style = {{backgroundColor: '#F2F2F2', display: 'block', color: 'black', padding: '2%', cursor: 'context-menu' }}>
+            <Link href="/"><img src={logo}/></Link>
+            <div style={{ fontSize: '15px', fontWeight: 'bold', float: 'right', display: 'flex' }}>
+            <Link href="/reports"><div>REPORTS</div></Link>
+            <Link href="/"><div style={{marginRight: '30px', marginLeft: '20px'}}>LOGOUT</div></Link>
+            </div>
+        </div>
         <div style={{ color: 'white', margin: '5%' }}> 
 
             <Grid container spacing={2} style={{ borderBottom: '2px solid black' }}>
@@ -111,6 +176,33 @@ function Post() {
                                 size="small"
                             />
                         </div>
+                        <div style = {{display: 'flex' }}>
+                            <h6 style = {{ marginRight: '10px', marginTop: '13px', width: '30%', color: 'black' }}>Excavation Section</h6>
+                            <TextField
+                                style = {{ width: '70%' }}
+                                id="demo-helper-text-aligned"
+                                label="Type"
+                                size="small"
+                            />
+                        </div>
+                        <div style = {{display: 'flex' }}>
+                            <h6 style = {{ marginRight: '10px', marginTop: '13px', width: '30%', color: 'black' }}>Excavation Method</h6>
+                            <TextField
+                                style = {{ width: '70%' }}
+                                id="demo-helper-text-aligned"
+                                label="Type"
+                                size="small"
+                            />
+                        </div>
+                        <div style = {{display: 'flex' }}>
+                            <h6 style = {{ marginRight: '10px', marginTop: '13px', width: '30%', color: 'black' }}>RESS no.</h6>
+                            <TextField
+                                style = {{ width: '70%' }}
+                                id="demo-helper-text-aligned"
+                                label="Type"
+                                size="small"
+                            />
+                        </div>
                 </Grid>
             </Grid>
 
@@ -123,6 +215,9 @@ function Post() {
                             id="demo-helper-text-aligned"
                             label="Type"
                             size="small"
+                            name="rqd"
+                            value={qData?.rqd}
+                            onChange={handleChange}
                         />
                     </div>
                     <div style={{ marginLeft: '3%' }}>
@@ -131,6 +226,9 @@ function Post() {
                             id="demo-helper-text-aligned"
                             label="Type"
                             size="small"
+                            name="jn"
+                            value={qData?.jn}
+                            onChange={handleChange}
                         />
                     </div>
                     <div style={{ marginLeft: '3%' }}>
@@ -139,6 +237,9 @@ function Post() {
                             id="demo-helper-text-aligned"
                             label="Type"
                             size="small"
+                            name="jr"
+                            value={qData?.jr}
+                            onChange={handleChange}
                         />
                     </div>
                     <div style={{ marginLeft: '3%' }}>
@@ -147,6 +248,9 @@ function Post() {
                             id="demo-helper-text-aligned"
                             label="Type"
                             size="small"
+                            name="ja"
+                            value={qData?.ja}
+                            onChange={handleChange}
                         />
                     </div>
 
@@ -156,6 +260,9 @@ function Post() {
                             id="demo-helper-text-aligned"
                             label="Type"
                             size="small"
+                            name="jw"
+                            value={qData?.jw}
+                            onChange={handleChange}
                         />
                     </div>
                     <div style={{ marginLeft: '3%' }}>
@@ -164,11 +271,21 @@ function Post() {
                             id="demo-helper-text-aligned"
                             label="Type"
                             size="small"
+                            name="srf"
+                            value={qData?.srf}
+                            onChange={handleChange}
                         />
                     </div>
                 </div>
 
-                <Button style={{ backgroundColor: 'black', marginTop: '20px', marginBottom: '3%' }} size="small" variant="contained">CALCULATE Q</Button>
+                <div style = {{display: 'flex', color: 'black', marginTop: '20px', marginBottom: '3%' }}>
+                <Button onClick={handleCalculate} style={{ backgroundColor: 'black', marginRight: '20px' }} size="small" variant="contained">CALCULATE Q</Button>
+                {qIndex !== null && 
+                    <div style = {{ backgroundColor: '#F1F1F1', padding: '10px' }}>
+                    <span style={{fontWeight: 'bold', padding: '20px'}}>Q INDEX= {qIndex}</span> | 
+                    <span style={{ padding: '20px'}}>{massQuality}</span>
+                </div>}
+                </div>
             </div>
 
             <div style={{ borderBottom: '2px solid black' }}>

@@ -12,7 +12,7 @@ function Login() {
             <h4 style = {{ color: 'black', marginLeft: '-130px' }}>Face Mapping Report</h4>
             <div style = {{display: 'block', width: '30%', marginLeft: 'auto', marginRight: 'auto' }}>
                 <div style = {{display: 'flex', marginBottom:'-10px' }}>
-                    <h6 style = {{ marginRight: '30px', marginTop: '13px', color: 'black', fontSize: '13px' }}>Email</h6>
+                    <h6 style = {{ marginRight: '5px', marginTop: '13px', color: 'black', fontSize: '13px' }}>Username</h6>
                     <TextField
                         id="demo-helper-text-aligned"
                         label="Type"

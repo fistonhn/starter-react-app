@@ -1,69 +1,3 @@
-// import * as React from 'react';
-// import Table from '@mui/material/Table';
-// import TableBody from '@mui/material/TableBody';
-// import TableCell from '@mui/material/TableCell';
-// import TableContainer from '@mui/material/TableContainer';
-// import TableHead from '@mui/material/TableHead';
-// import TableRow from '@mui/material/TableRow';
-// import Paper from '@mui/material/Paper';
-// import logo from '../../assets/logo.png';
-
-// function createData(name, calculation, date) {
-//     return { name, calculation, date };
-//   }
-
-// const rows = [
-//   createData('L2-N1, Advance S5', '120+238 to 120+240', 'October 7, 2022 -3:20pm'),
-//   createData('L2-N1, Advance S5', '120+238 to 120+240', 'October 7, 2022 -3:20pm'),
-//   createData('L2-N1, Advance S5', '120+238 to 120+240', 'October 7, 2022 -3:20pm'),
-//   createData('L2-N1, Advance S5', '120+238 to 120+240', 'October 7, 2022 -3:20pm'),
-//   createData('L2-N1, Advance S5', '120+238 to 120+240', 'October 7, 2022 -3:20pm'),
-
-//   createData('L2-N1, Advance S5', '120+238 to 120+240', 'October 7, 2022 -3:20pm'),
-//   createData('L2-N1, Advance S5', '120+238 to 120+240', 'October 7, 2022 -3:20pm'),
-//   createData('L2-N1, Advance S5', '120+238 to 120+240', 'October 7, 2022 -3:20pm'),
-//   createData('L2-N1, Advance S5', '120+238 to 120+240', 'October 7, 2022 -3:20pm'),
-//   createData('L2-N1, Advance S5', '120+238 to 120+240', 'October 7, 2022 -3:20pm'),
-// ];
-
-// export default function Reports() {
-//   return (
-    // <>
-    //     <img src={logo} style={{ padding: '1%'}}/>
-
-    //     <div style={{ color: 'white', margin: '3% 10%' }}> 
-//             <TableContainer component={Paper}>
-//             <Table sx={{ minWidth: 650 }} aria-label="simple table">
-                // <TableHead>
-                // <TableRow>
-                //     <TableCell>ADVANCE</TableCell>
-                //     <TableCell >CHAINAGE</TableCell>
-                //     <TableCell >DATE + TIME</TableCell>
-                //     <TableCell >{''}</TableCell>
-                // </TableRow>
-                // </TableHead>
-//                 <TableBody>
-//                 {rows.map((row) => (
-                    // <TableRow
-                    // key={row.name}
-                    // sx={{ '&:last-child td, &:last-child th': { border: 0 } }}
-                    // >
-                    // <TableCell component="th" scope="row">{row.name}</TableCell>
-                    // <TableCell >{row.calculation}</TableCell>
-                    // <TableCell >{row.date}</TableCell>
-                    // <TableCell >{'download'}</TableCell>
-                    // </TableRow>
-//                 ))}
-//                 </TableBody>
-//             </Table>
-//             </TableContainer>
-    //     </div>
-
-    // </>
-
-//   );
-// }
-
 import * as React from 'react';
 import PropTypes from 'prop-types';
 import { useTheme } from '@mui/material/styles';
@@ -83,6 +17,7 @@ import KeyboardArrowRight from '@mui/icons-material/KeyboardArrowRight';
 import LastPageIcon from '@mui/icons-material/LastPage';
 import TableHead from '@mui/material/TableHead';
 import logo from '../../assets/logo.png';
+import Link from '@material-ui/core/Link';
 
 function TablePaginationActions(props) {
   const theme = useTheme();
@@ -182,7 +117,13 @@ export default function CustomPaginationActionsTable() {
 
   return (
     <>
-    <img src={logo} style={{ padding: '1%'}}/>
+    <div style = {{backgroundColor: '#F2F2F2', display: 'block', color: 'black', padding: '2%', cursor: 'context-menu' }}>
+      <Link href="/"><img src={logo}/></Link>
+      <div style={{ fontSize: '15px', fontWeight: 'bold', float: 'right', display: 'flex' }}>
+      <Link href="/post"><div>POST</div></Link>
+      <Link href="/"><div style={{marginRight: '30px', marginLeft: '20px'}}>LOGOUT</div></Link>
+      </div>
+    </div>
     <div style={{ color: 'white', margin: '3% 10%' }}> 
         <TableContainer component={Paper}>
         <Table sx={{ minWidth: 500 }} aria-label="custom pagination table">
