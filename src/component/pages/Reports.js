@@ -118,7 +118,7 @@ export default function CustomPaginationActionsTable() {
   return (
     <>
     <div style = {{backgroundColor: '#F2F2F2', display: 'block', color: 'black', padding: '2%', cursor: 'context-menu' }}>
-      <Link href="/"><img src={logo}/></Link>
+      <Link href="/"><img alt="logo" src={logo}/></Link>
       <div style={{ fontSize: '15px', fontWeight: 'bold', float: 'right', display: 'flex' }}>
       <Link href="/post"><div>POST</div></Link>
       <Link href="/"><div style={{marginRight: '30px', marginLeft: '20px'}}>LOGOUT</div></Link>
