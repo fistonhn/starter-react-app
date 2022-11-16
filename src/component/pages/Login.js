@@ -2,7 +2,7 @@ import React from 'react';
 import TextField from '@mui/material/TextField';
 import Button from '@mui/material/Button';
 import logo from '../../assets/logo.png';
-import Link from '@material-ui/core/Link';
+import Link from '@mui/material/Link';
 
 
 function Login() {
